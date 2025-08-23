@@ -33,6 +33,6 @@ class Anime extends Model
 
     public function genre()
     {
-        return $this->belongsToMany(Genre::class, 'anime_genre', 'a_id', 'g_id');   
+        return $this->belongsToMany(Genre::class, 'anime_genres', 'a_id', 'g_id'); 
     }
 }

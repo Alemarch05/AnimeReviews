@@ -3,10 +3,30 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\animeController; 
+use App\Http\Controllers\reviewController;
 
 Route::post('/register', [userController::class, 'store']);
 
 Route::post('/login', [userController::class, 'login']);
+
+Route::get('/anime', [animeController::class, 'index']);
+
+Route::get('/genres' , [animeController::class, 'indexGenres']);
+
+Route::post('/genres' , [animeController::class, 'storeGenre']);
+
+Route::get('/reviews', [reviewController::class, 'indexReview']);
+
+Route::post('/reviews', [reviewController::class, 'storeReview']);
+
+Route::get('/ratings', [reviewController::class, 'indexRatings']);
+
+Route::post('/ratings', [reviewController::class, 'storeRating']);
+
+Route::get('/comments', [reviewController::class, 'indexComments']);
+
+Route::post('/comments', [reviewController::class, 'storeComment']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [userController::class, 'logout']);
