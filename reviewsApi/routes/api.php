@@ -6,25 +6,27 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\animeController; 
 use App\Http\Controllers\reviewController;
 
+
+Route::get('/animes', [animeController::class, 'index']);
+
+Route::get('/genres' , [animeController::class, 'indexGenres']);
+
+Route::get('/reviews', [reviewController::class, 'indexReview']);
+
+Route::get('/ratings', [reviewController::class, 'indexRatings']);
+
+Route::get('/comments', [reviewController::class, 'indexComments']);
+
+
 Route::post('/register', [userController::class, 'store']);
 
 Route::post('/login', [userController::class, 'login']);
 
-Route::get('/anime', [animeController::class, 'index']);
-
-Route::get('/genres' , [animeController::class, 'indexGenres']);
-
 Route::post('/genres' , [animeController::class, 'storeGenre']);
-
-Route::get('/reviews', [reviewController::class, 'indexReview']);
 
 Route::post('/reviews', [reviewController::class, 'storeReview']);
 
-Route::get('/ratings', [reviewController::class, 'indexRatings']);
-
 Route::post('/ratings', [reviewController::class, 'storeRating']);
-
-Route::get('/comments', [reviewController::class, 'indexComments']);
 
 Route::post('/comments', [reviewController::class, 'storeComment']);
 

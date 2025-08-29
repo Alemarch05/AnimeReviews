@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - pgsql
+
+  nginx:
+    image: nginx:latest
+    container_name: laravel_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - laravel
+
+  pgsql:
+    image: postgres:15
+    container_name: laravel_pgsql
+    restart: always
+    environment:
+      POSTGRES_DB: ANIMEREVIEWS
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: fcecep
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  
