@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecommendedComponent } from './recommended.component';
+import { AnimeDialogComponent } from './anime-dialog.component';
 
-describe('RecommendedComponent', () => {
-  let component: RecommendedComponent;
-  let fixture: ComponentFixture<RecommendedComponent>;
+describe('AnimeDialogComponent', () => {
+  let component: AnimeDialogComponent;
+  let fixture: ComponentFixture<AnimeDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecommendedComponent]
+      imports: [AnimeDialogComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RecommendedComponent);
+    fixture = TestBed.createComponent(AnimeDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

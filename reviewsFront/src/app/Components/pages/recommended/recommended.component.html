@@ -1,1 +1,36 @@
-<p>recommended works!</p>
+<div class="container-fluid">
+    <div class="col-12 row">
+        <!-- CARDS -->
+        <div *ngIf="animes.length > 0" class="col-12 row justify-content-center">
+            <div *ngFor="let anime of animes" class="col-3 m-4 row">
+
+
+              <div class="card">
+              <img src="{{anime.a_image_url}}" alt="Anime" class="col-12 bg-dark">
+              <div class="col-12">
+                <h3>{{anime.a_tittle}}</h3>
+                <p>{{anime.a_description}}</p>
+                <p>{{anime.a_status}}</p>
+                <p>{{anime.a_average_rating}}</p>
+              </div>
+              </div>
+
+
+           </div>
+        </div>
+        <!--  -->
+
+    </div>
+</div>
+
+ <!-- id : number;
+    a_tittle : string;
+    a_description : string;
+    a_image_url : string;
+    a_release_year : number;
+    a_episodes : number;
+    a_status : string;
+    a_average_rating : string;
+    created_at : string;
+    updated_at : string;
+    genres : Genre[]; -->
