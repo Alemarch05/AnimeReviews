@@ -6,10 +6,11 @@ import { AlertService } from '../../../core/services/alert.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [MaterialModule, CommonModule],
+  imports: [MaterialModule, CommonModule, ReactiveFormsModule],
   standalone: true,
   providers: [],
   templateUrl: './login.component.html',
@@ -17,6 +18,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm : FormGroup;
+    hide = true; // Mostrar/ocultar contraseña
+
   constructor(
     private alertService: AlertService,
     private authService : AuthService,
@@ -24,22 +27,16 @@ export class LoginComponent {
     ,private fb: FormBuilder
     ) {
     this.loginForm = this.fb.group({
-      email: ['',Validators.required, Validators.email],
-      password: ['',Validators.required, Validators.minLength(6)]
+      u_email: ['',Validators.required, Validators.email],
+      u_password: ['',Validators.required]
     });
   }
     
- hide = signal(true);
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
-  }
-
 onLogin(): void {
   if (this.loginForm.invalid) return
-  const {email, password} = this.loginForm.value;
+  const {u_email, u_password} = this.loginForm.value;
   this.alertService.showLoading('Iniciando sesión...');
-   this.authService.login({email, password}).subscribe({
+   this.authService.login({u_email, u_password}).subscribe({
       next: () => {
         this.alertService.closeAlert(); // cerrar loading
         this.alertService.showAlertWithTimeout('Bienvenido', 'Has iniciado sesión correctamente');

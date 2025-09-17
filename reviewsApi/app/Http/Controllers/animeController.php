@@ -12,10 +12,7 @@ class animeController extends Controller
     public function index()
     {
     $animes = Anime::with('genre')->get();
-        return response()->json([
-            'status' => 'success',
-            'data' => $animes
-        ]);
+        return response()->json($animes);
     }
 
     public function store(Request $request)
@@ -51,10 +48,7 @@ class animeController extends Controller
 
     public function indexGenres(){
         $genres = Genre::with('anime')->get();
-        return response()->json([
-            'status' => 'success',
-            'data' => $genres
-        ]);
+        return response()->json($genres);
     }
 
     public function storeGenre(Request $request)

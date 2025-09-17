@@ -13,6 +13,8 @@ Route::get('/genres' , [animeController::class, 'indexGenres']);
 
 Route::get('/reviews', [reviewController::class, 'indexReview']);
 
+Route::get('/reviewsMe', [reviewController::class, 'indexMeReviews']);
+
 Route::get('/ratings', [reviewController::class, 'indexRatings']);
 
 Route::get('/comments', [reviewController::class, 'indexComments']);

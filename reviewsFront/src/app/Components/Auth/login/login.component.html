@@ -1,31 +1,43 @@
-<div class="container">
-    <div class="row justify-content-center item-align-center mt-5 bg-light">
-
-        <h1 class="text-center mb-5">Login</h1>
-        <div class="card-login col-5 justify-content-center row p-5">
-            <mat-form-field>
-                <mat-label>Digite su Email</mat-label>
-                <input
-                matInput
-                placeholder="pat@example.com"
-                required
-                />
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <mat-card class="shadow-lg p-4 w-100" style="max-width: 400px;">
+        <mat-card-title class="text-center text-primary mb-3">Iniciar sesión</mat-card-title>
+        <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <mat-form-field class="w-100 mb-3">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="u_email" type="email" required>
+            <mat-error *ngIf="loginForm.get('u_email')?.invalid && loginForm.get('u_email')?.touched">
+                Correo inválido
+            </mat-error>
             </mat-form-field>
-            
-           <mat-form-field>
-           <mat-label>Digiste su Contraseña</mat-label>
-           <input matInput [type]="hide() ? 'password' : 'text'" />
-           <button
-             matIconButton
-             matSuffix
-             (click)="clickEvent($event)"
-             [attr.aria-label]="'Hide password'"
-             [attr.aria-pressed]="hide()"
-           >
-             <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-           </button>
-           </mat-form-field>
 
-        </div>
-    </div>
+            <mat-form-field class="w-100 mb-3">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="u_password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('u_password')?.invalid && loginForm.get('u_password')?.touched">
+                La contraseña es requerida
+            </mat-error>
+            </mat-form-field>
+
+            <mat-card-actions class="d-flex flex-column gap-2">
+            <button mat-raised-button color="primary" class="w-100" type="submit" [disabled]="loginForm.invalid">
+                Iniciar sesión
+            </button>
+            
+            <!-- Botón link para recuperar contraseña -->
+            <button
+                mat-button
+                color="accent"
+                class="w-100"
+                type="button"
+                >
+                ¿Olvidaste tu contraseña?
+            </button>
+            </mat-card-actions>
+        </form>
+        </mat-card-content>
+    </mat-card>
 </div>

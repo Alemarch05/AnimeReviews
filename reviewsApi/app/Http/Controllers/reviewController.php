@@ -15,11 +15,8 @@ class reviewController extends Controller
 {
 public function indexReview()
  {
-    $reviews = Review::all();
-    return response()->json([
-        'status' => 'success',
-        'data' => $reviews
-    ]);
+    $reviews = Review::with('anime','user','comments')->get();
+    return response()->json($reviews);
  }
 
  public function storeReview(Request $request)
@@ -50,10 +47,7 @@ public function indexReview()
 public function indexRatings()
 {
  $ratings = Rating::all();
- return response()->json([
-        'status' => 'success',
-        'data' => $ratings
- ]) ;
+ return response()->json($ratings) ;
 }
 
 public function storeRating(Request $request)
@@ -80,10 +74,7 @@ public function storeRating(Request $request)
 public function indexComments()
 {
     $comments = Comment::all();
-    return response()->json([
-        'status' => 'success',
-        'data' => $comments
-    ]);
+    return response()->json($comments);
 
 }
 public function storeComment(Request $request)
@@ -104,5 +95,13 @@ public function storeComment(Request $request)
         'data' => $comment
     ], 201);
 
+  }
+  public function indexMeReviews(Request $request)
+  {
+    $user = $request->user();
+    $reviews = Review::where('u_id', $user->id)->with('anime','comments')->get();
+    return response()->json($reviews);
+    
+   
   }
 }
