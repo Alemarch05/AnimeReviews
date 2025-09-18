@@ -6,13 +6,16 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject , PLATFORM_ID} from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-private apiUrl = `${environment.apiUrl}`
+private apiUrl = `${environment.apiUrl}`;
+private authState = new BehaviorSubject<boolean>(false);
+
   constructor(private http : HttpClient, @Inject(PLATFORM_ID) private platformId: Object
 ) { }
 
@@ -43,5 +46,51 @@ private apiUrl = `${environment.apiUrl}`
   {
     return this.http.put<User>(`${this.apiUrl}/${id}`,user)
   }
+
+  isAuthenticated(): boolean {
+  if (typeof window === 'undefined') {
+    console.log("No window object")
+    return false;
+  }
+
+  const token = localStorage.getItem('token');
+  console.log('Token:', token);
+
+
+  if (token) {
+    console.log('Token found, navigating to admin');
+    return true;
+  } else {
+    console.log('No token found, navigating to login');
+    return false;
+  }
+}
+
+  getToken(): string | null {
+    if (typeof window === 'undefined') return null;
+    
+      
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      return token;
+    }
+
+    return null;
+  }
+
+   isTokenExpired(token: string): boolean {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const exp = payload.exp;
+    return Date.now() >= exp * 1000;
+  }
+
+  logoutLocal(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('token');
+    }
+    this.authState.next(false);
+  }
+
 
 }

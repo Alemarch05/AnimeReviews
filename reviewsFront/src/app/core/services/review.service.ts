@@ -28,4 +28,8 @@ private apiUrl = `${environment.apiUrl}/reviews`
     return this.http.put<Review>(`${this.apiUrl}/${id}`,review)
   }
 
+  getReviewsByUser(): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}/Me`);
+  }
+
 }

@@ -7,19 +7,21 @@ import { MyProfileComponent } from './Components/Auth/my-profile/my-profile.comp
 import { MyReviewsComponent } from './Components/pages/my-reviews/my-reviews.component';
 import { RecommendedComponent} from './Components/pages/recommended/recommended.component';
 import { ReviewsComponent } from './Components/pages/reviews/reviews.component'; 
+import { AuthGuard } from './core/guards/auth.guard';
 
 
 export const routes: Routes = [
     {
         path: '', component: RoutingAuthComponent,
         children: [
-          {path: '', component: LoginComponent},
-          {path: 'register', component: RegisterComponent}
+            {path: '', component: LoginComponent},
+            {path: 'register', component: RegisterComponent}
         ]
         
     },
     {
         path: '', component: RoutingPagesComponent,
+        canActivate: [AuthGuard],
         children: [
             {path: 'my-profile', component: MyProfileComponent},
             {path: 'my-reviews', component: MyReviewsComponent},
