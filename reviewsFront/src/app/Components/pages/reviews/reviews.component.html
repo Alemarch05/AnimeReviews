@@ -2,12 +2,5 @@
     <div>
         <h1 class="text-center mt-5">Reseñas</h1>
     </div>
-    <div *ngFor="let review of reviews" class="card mt-4">
-        <div class="card-body">
-            <h5 class="card-title">{{review.title}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Anime: {{review.anime.a_tittle}}</h6>
-
-        </div>
-
-    </div>
+    <app-comment [reviews]="reviews"></app-comment>
 </div>

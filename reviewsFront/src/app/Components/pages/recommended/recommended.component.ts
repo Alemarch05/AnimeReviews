@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AnimeService } from '../../../core/services/anime.service';
 import { AlertService } from '../../../core/services/alert.service';
 import { Anime } from '../../../interfaces/anime';
+import { CardComponent } from '../../../shared/card/card.component';
 
 @Component({
   selector: 'app-recommended',
   standalone: true,
-  imports: [CommonModule],  
+  imports: [CommonModule, CardComponent],  
   templateUrl: './recommended.component.html',
   styleUrl: './recommended.component.scss'
 })

@@ -3,10 +3,12 @@ import { ReviewService } from '../../../core/services/review.service';
 import { AlertService } from '../../../core/services/alert.service';
 import { Review } from '../../../interfaces/review';
 import { CommonModule } from '@angular/common';
+import { CommentComponent } from '../../../shared/comment/comment.component';
 
 @Component({
   selector: 'app-my-reviews',
-  imports: [CommonModule],
+  imports: [CommonModule, CommentComponent],
+  standalone: true,
   templateUrl: './my-reviews.component.html',
   styleUrl: './my-reviews.component.scss'
 })

@@ -1,0 +1,19 @@
+    <div class="col-12 row justify-content-center">
+
+        
+        <div *ngFor="let anime of animes" class="col-3 m-4">
+            <div class="card col-12">
+                
+              <img src="{{anime.a_image_url}}" alt="Anime" class="col-12 bg-dark">
+
+              <div class="col-12">
+                <h3>{{anime.a_tittle}}</h3>
+                <p>{{anime.a_description}}</p>
+                <p>{{anime.a_status}}</p>
+                <p>{{anime.a_average_rating}}</p>
+            </div>
+        </div>
+        
+        
+        </div>
+    </div>
