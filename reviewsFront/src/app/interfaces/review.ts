@@ -11,5 +11,6 @@ export interface Review {
     updated_at : string;
     anime : Anime;
     user : User;
+    comments : Comment[];
     
 }

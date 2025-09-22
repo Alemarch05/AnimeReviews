@@ -10,5 +10,5 @@ export interface Anime {
     a_average_rating : string;
     created_at : string;
     updated_at : string;
-    genres : Genre[];
+    genre : Genre[];
 }

@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './anime-dialog.component.scss'
 })
 export class AnimeDialogComponent {
+  
 
 }

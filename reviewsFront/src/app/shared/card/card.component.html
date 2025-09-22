@@ -1,19 +1,42 @@
     <div class="col-12 row justify-content-center">
 
         
-        <div *ngFor="let anime of animes" class="col-3 m-4">
+        <div *ngFor="let anime of animes" class="card-main col-md-3 col-12 m-4 justify-content-center align-items-center">
             <div class="card col-12">
-                
-              <img src="{{anime.a_image_url}}" alt="Anime" class="col-12 bg-dark">
+             <div class="content-img">
+              <img src="naruto.jpg" alt="Anime" class="col-12 bg-dark img img-fluid">
+             </div>
 
-              <div class="col-12">
-                <h3>{{anime.a_tittle}}</h3>
-                <p>{{anime.a_description}}</p>
-                <p>{{anime.a_status}}</p>
-                <p>{{anime.a_average_rating}}</p>
+               <div class="col-12 row p-4">
+                 <div class="col-12">
+                  <h3>{{anime.a_tittle}}</h3>
+                   <p>{{anime.a_description}}</p>
+                 </div>
+                <div class="col-5">
+                    <!-- <p>{{anime.a_status}}</p> -->
+                    <div class="status-container">
+                       <div class="status-overlay">
+                         Estado
+                       </div>
+                       <div class="status-text">
+                         {{ anime.a_status }}
+                       </div>
+                     </div>
+                </div>
+                <div class="col-7 ratings">
+                    <p>{{ +anime.a_average_rating | starRating }}</p>
+                </div>
+                <div class="col-12 row">
+                    
+                    <div class="col offset-1 btn btn-outline-info" *ngFor="let genre of anime.genre">{{genre.g_name}}</div>
+                </div>
+                    
+
+              </div>
             </div>
-        </div>
         
         
         </div>
+
+
     </div>
