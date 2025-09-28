@@ -18,7 +18,7 @@ class userController extends Controller
         [
            'u_name' => 'required|string|max:100',
            'u_email' => 'required|string|email|max:150|unique:users',
-           'u_password' => 'required|string|min:8',
+           'password' => 'required|string|min:8',
         ]);
         // esto es eloquen el Create basicamenre usando el modelo User
         // se crea un nuevo usuario con los datos validados estos datos salen de validate
@@ -28,7 +28,7 @@ class userController extends Controller
                 'u_name' => $validate['u_name'],
                 'u_email' => $validate['u_email'],
                 // se encripta la contraseña antes de guardarla en la base de datos
-                'u_password' => Hash::make($validate['u_password']),
+                'password' => Hash::make($validate['password']),
             ]);
         // se crea un token para el usuario recien creado
         // esto es para que el usuario pueda autenticarse en la api ese plaintTextToken
@@ -59,19 +59,19 @@ class userController extends Controller
             // Se valida el request que llega
             $validate = $request->validate([
                 'u_email' => 'required|string|email|max:150',
-                'u_password' => 'required|string|min:8',
+                'password' => 'required|string|min:8',
             ]);
         } catch (ValidationException $e) {
             return response()->json(
                 [
                     'response_code' => 422,
-                    'message' => 'Datos de inicio de sesión inválidos',
+                    'message' => 'Datos de inicio de sesión inválidos v.1',
                     'status' => "Error"
                 ], 422);
         }
        $user = User::Where('u_email', $validate['u_email'])->first();
        
-       if(!$user || !Hash::check($validate['u_password'], $user->u_password))
+       if(!$user || !Hash::check($validate['password'], $user->password))
         {
         return response()->json(
             [

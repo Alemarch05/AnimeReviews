@@ -7,6 +7,7 @@ use App\Http\Controllers\animeController;
 use App\Http\Controllers\reviewController;
 
 Route::post('/login', [userController::class, 'login']);
+Route::post('/register', [userController::class, 'store']);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/animes', [animeController::class, 'index']);
@@ -18,7 +19,6 @@ Route::middleware(['auth:sanctum'])->group(function (){
     
     Route::get('/comments', [reviewController::class, 'indexComments']);
     
-    Route::post('/register', [userController::class, 'store']);
     
     Route::post('/genres' , [animeController::class, 'storeGenre']);
     

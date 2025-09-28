@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment-local';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../interfaces/user';
 import { Observable } from 'rxjs';
@@ -19,7 +19,8 @@ private authState = new BehaviorSubject<boolean>(false);
   constructor(private http : HttpClient, @Inject(PLATFORM_ID) private platformId: Object
 ) { }
 
-  login(credentials:{u_email: string,u_password:string}):Observable<any>{
+  login(credentials:{u_email: string, password:string}):Observable<any>{
+    alert(this.apiUrl);
     return this.http.post<User>(`${this.apiUrl}/login`,credentials).pipe(
       tap((response: any) => {
         if (isPlatformBrowser(this.platformId)) {

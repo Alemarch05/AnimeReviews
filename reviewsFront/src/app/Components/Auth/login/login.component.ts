@@ -7,6 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -28,25 +29,29 @@ export class LoginComponent {
     ) {
     this.loginForm = this.fb.group({
       u_email: ['',Validators.required, Validators.email],
-      u_password: ['',Validators.required]
+      password: ['',Validators.required]
     });
   }
+  
+
+
     
-onLogin(): void {
-  if (this.loginForm.invalid) return
-  const {u_email, u_password} = this.loginForm.value;
-  this.alertService.showLoading('Iniciando sesión...');
-   this.authService.login({u_email, u_password}).subscribe({
-      next: () => {
-        this.alertService.closeAlert(); // cerrar loading
-        this.alertService.showAlertWithTimeout('Bienvenido', 'Has iniciado sesión correctamente');
-        this.router.navigate(['/recomended']);
-      },
-      error: (err) => {
-        this.alertService.closeAlert();
-        this.alertService.showError('Error', err.error.message || 'Correo o contraseña incorrectos');
-      }
-    });
-}
+  onLogin(): void {
+    alert();
+   if (this.loginForm.invalid) return
+   const {u_email, password} = this.loginForm.value;
+   this.alertService.showLoading('Iniciando sesión...');
+    this.authService.login({u_email, password}).subscribe({
+       next: () => {
+         this.alertService.closeAlert(); // cerrar loading
+         this.alertService.showAlertWithTimeout('Bienvenido', 'Has iniciado sesión correctamente');
+         this.router.navigate(['/recomended']);
+       },
+       error: (err) => {
+         this.alertService.closeAlert();
+         this.alertService.showError('Error', err.error.message || 'Correo o contraseña incorrectos');
+       }
+     });
+    }
 
 }
