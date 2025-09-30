@@ -1,1 +1,10 @@
-<p>anime-dialog works!</p>
+<h1 mat-dialog-title>{{ data.a_episodes }}</h1>
+<div mat-dialog-content>
+  <img [src]="data.a_description" alt="{{data.a_tittle}}">
+  <p>{{ data.a_description }}</p>
+  <p><b>Estado:</b> {{ data.a_status }}</p>
+  <p><b>Rating:</b> {{ data.a_average_rating }}</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cerrar</button>
+</div>

@@ -2,7 +2,7 @@
 
         
         <div *ngFor="let anime of animes" class="card-main col-md-3 col-12 m-4 justify-content-center align-items-center">
-            <div class="card col-12">
+            <div class="card col-12" (click)="openDialog(anime)">
              <div class="content-img">
               <img src="naruto.jpg" alt="Anime" class="col-12 bg-dark img img-fluid">
              </div>
